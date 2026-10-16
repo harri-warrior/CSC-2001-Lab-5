@@ -15,7 +15,13 @@ public record Node<T>(T first, Node <T> rest){
         };
     }
 
-//    public T get() {
-//        return first;
-//    }
+    public static <T> boolean equals(Node<T> list1, Node<T> list2) {
+        return switch (list1) {
+            case null -> list2 == null;
+            case Node(T f1, Node<T> r1) -> switch (list2) {
+                case null -> false;
+                case Node(T f2, Node<T> r2) -> java.util.Objects.equals(f1, f2) && equals(r1, r2);
+            };
+        };
+    }
 }

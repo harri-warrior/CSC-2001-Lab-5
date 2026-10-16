@@ -135,4 +135,116 @@ class MainTest {
 
         assertEquals(42, stack.peek());
     }
+
+    //Linked list queue tests
+
+    @Test
+    public void testEmptyQueue() {
+        LLQueue<Integer> first = new LLQueue<>();
+        first = first.emptyQueue();
+        assertEquals(0, first.size());
+    }
+
+    @Test
+    public void testSize() {
+        LLQueue<Integer> first = new LLQueue<>(
+                new Node<Integer>(
+                        1,
+                        null
+                )
+        );
+        assertEquals(1, first.size());
+    }
+
+    @Test
+    public void testPeek() {
+        Node<Integer> firstNode = new Node<Integer>(2,null);
+        LLQueue<Integer> first = new LLQueue<>(
+                firstNode
+        );
+        assertEquals(2, first.peek());
+    }
+
+    @Test
+    public void testEnqueue() {
+        LLQueue<Integer> first = new LLQueue<>(
+                new Node<Integer>(
+                        2,
+                        new Node<Integer>(
+                                3,
+                                null
+                        )
+                )
+        );
+        LLQueue<Integer> second = new LLQueue<>(
+                new Node<Integer>(
+                        2,
+                        null
+                )
+        );
+
+        second.enqueue(3);
+        assertTrue(Node.equals(first.getHead(),second.getHead()));
+    }
+
+    @Test
+    public void testDequeue() {
+        LLQueue<Integer> first = new LLQueue<>(
+                new Node<Integer>(
+                        2,
+                        new Node<Integer>(
+                                3,
+                                null
+                        )
+                )
+        );
+        LLQueue<Integer> second = new LLQueue<>(
+                new Node<Integer>(
+                        3,
+                        null
+                )
+        );
+
+        first.dequeue();
+        assertTrue(Node.equals(first.getHead(),second.getHead()));
+    }
+
+    // AQueue tests
+
+    @Test
+    public void testEmptyAQueue() {
+        AQueue<Integer> first = new AQueue<>(0);
+        first = first.emptyQueue();
+        assertEquals(0, first.size());
+    }
+
+    @Test
+    public void testAQueueSize() {
+        AQueue<Integer> first = new AQueue<>(4);
+        first.enqueue(2);
+        assertEquals(1, first.size());
+    }
+
+    @Test
+    public void testAQueuePeek() {
+        AQueue<Integer> first = new AQueue<>(4);
+        first.enqueue(2);
+        assertEquals(2, first.peek());
+    }
+
+    @Test
+    public void testAQueueEnqueue() {
+        AQueue<Integer> first = new AQueue<Integer>(4);
+
+        first.enqueue(3);
+        assertEquals(3,first.peek());
+    }
+
+    @Test
+    public void testAQueueDequeue() {
+        AQueue<Integer> first = new AQueue<Integer>(4);
+
+        first.enqueue(3);
+        assertEquals(3,first.dequeue());
+    }
 }
